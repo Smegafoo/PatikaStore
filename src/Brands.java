@@ -1,25 +1,28 @@
-import java.util.HashMap;
-import java.util.Map.Entry;
+public class Brands implements Comparable<Brands>{
+    private int id;
+    private String name;
 
-public class Brands {
-    private static HashMap<Integer, String> brands;
-    public Brands() {
+    public Brands(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
-    static{
-        brands=new HashMap<>();
-        brands.put(1,"Samsung");
-        brands.put(2,"Apple");
-        brands.put(3,"Huawei");
-        brands.put(4,"Casper");
-        brands.put(5,"Asus");
-        brands.put(6,"HP");
-        brands.put(7,"Xiaomi");
-        brands.put(8,"Monster");
-    }
-    public static void getBrandName(){
-        for(Entry<Integer,String> brands:brands.entrySet()){
-            System.out.println("- "+brands.getValue());
-        }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int compareTo(Brands other) {
+        return this.name.compareTo(other.name);
     }
 }
