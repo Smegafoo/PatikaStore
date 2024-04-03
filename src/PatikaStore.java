@@ -22,7 +22,8 @@ public class PatikaStore {
             switch (selectEnter){
                 case 1:
                     break;
-                case 2:fs1.ProductList();
+                case 2:
+                    MobilePhoneCenter();
                     break;
                 case 3:
                     BrandCenter();
@@ -56,5 +57,29 @@ public class PatikaStore {
                     break;
             }
         }
+    }
+
+    public void MobilePhoneCenter(){
+        Scanner in=new Scanner(System.in);
+        FunctionalStore fs3=new FunctionalStore();
+        int selectmpCenter=1;
+        while(selectmpCenter!=0){
+            System.out.println("Ne yapmak istiyorsunuz:\n1)Cep telefonlarını göster\n2)Cep telefonu ekle\n3)Cep telefonu sil\n0)Çıkış");
+            selectmpCenter=in.nextInt();
+            switch (selectmpCenter){
+                case 1:
+                    fs3.printMobilePhones();
+                    break;
+                case 2:
+                    fs3.addMobilePhone();
+                    break;
+                case 3:
+                    fs3.removeMobilePhone();
+                    break;
+                case 0:
+                    break;
+            }
+        }
+
     }
 }

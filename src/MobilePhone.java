@@ -1,4 +1,4 @@
-public class MobilePhone extends Products{
+public class MobilePhone extends Products {
    private int phoneSupplyPower;
    private String phoneColor;
 
@@ -9,6 +9,8 @@ public class MobilePhone extends Products{
         this.phoneSupplyPower = phoneSupplyPower;
         this.phoneColor = phoneColor;
     }
+
+
 
     public int getPhoneSupplyPower() {
         return phoneSupplyPower;
