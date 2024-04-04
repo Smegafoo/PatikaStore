@@ -21,6 +21,7 @@ public class PatikaStore {
 
             switch (selectEnter){
                 case 1:
+                    NotebookCenter();
                     break;
                 case 2:
                     MobilePhoneCenter();
@@ -81,5 +82,28 @@ public class PatikaStore {
             }
         }
 
+    }
+
+    public void NotebookCenter(){
+        Scanner in=new Scanner(System.in);
+        FunctionalStore fs4=new FunctionalStore();
+        int selectnbCenter=1;
+        while(selectnbCenter!=0){
+            System.out.println("Ne yapmak istiyorsunuz:\n1)Notebookları göster\n2)Notebook ekle\n3)Notebook sil\n0)Çıkış");
+            selectnbCenter=in.nextInt();
+            switch (selectnbCenter){
+                case 1:
+                    fs4.printNoteBooks();
+                    break;
+                case 2:
+                    fs4.addNoteBook();
+                    break;
+                case 3:
+                    fs4.removeNotebook();
+                    break;
+                case 4:
+                    break;
+            }
+        }
     }
 }

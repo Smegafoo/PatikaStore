@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 
 public class FunctionalStore {
 
@@ -8,13 +10,13 @@ public class FunctionalStore {
     static{
         BrandList=new ArrayList<>();
         BrandList.add(new Brands(1,"Samsung"));
-        BrandList.add(new Brands(2,"Lenovo "));
-        BrandList.add(new Brands(3,"Apple    "));
-        BrandList.add(new Brands(4,"Huawei  "));
-        BrandList.add(new Brands(5,"Casper  "));
-        BrandList.add(new Brands(6,"Asus   "));
-        BrandList.add(new Brands(7,"HP     "));
-        BrandList.add(new Brands(8,"Xiaomi  "));
+        BrandList.add(new Brands(2,"Lenovo"));
+        BrandList.add(new Brands(3,"Apple"));
+        BrandList.add(new Brands(4,"Huawei"));
+        BrandList.add(new Brands(5,"Casper"));
+        BrandList.add(new Brands(6,"Asus"));
+        BrandList.add(new Brands(7,"HP"));
+        BrandList.add(new Brands(8,"Xiaomi"));
         BrandList.add(new Brands(9,"Monster"));
         Collections.sort(BrandList);
     }
@@ -66,7 +68,7 @@ public class FunctionalStore {
         Collections.sort(mpList);
     }
     public void printMobilePhones(){
-        System.out.println("|------------------------------------------------------------------------------------------------------------------|");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------");
         System.out.println("| ID  |  Name\t\t\t\t|  Marka\t|  Fiyat \t  |  Depolama\t|  Ekran\t|  Pil\t\t|  Ram\t  |  Renk\t   |");
         System.out.println("|------------------------------------------------------------------------------------------------------------------|");
         for(MobilePhone mp:mpList){
@@ -75,7 +77,7 @@ public class FunctionalStore {
                     mp.getProductStorage(), mp.getProductSize(), mp.getPhoneSupplyPower(), mp.getRam(),
                     mp.getPhoneColor());
         }
-        System.out.println("|------------------------------------------------------------------------------------------------------------------|");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------");
     }
     public void addMobilePhone(){
         Scanner in=new Scanner(System.in);
@@ -84,46 +86,26 @@ public class FunctionalStore {
         in.nextLine();
         System.out.println("Girmek istediğiniz telefonun adını giriniz:");
         String mpName=in.nextLine();
-        System.out.println(mpName);
-        int selectBrandNameSelection;
-        String mpBrandName = null;
-        do{System.out.println("Girmek istediğiniz telefonun markasını seçiniz:\n1)Apple\n2)Asus\n3)Casper\n" +
-                "4)HP\n5)Huawei\n6)Lenovo\n7)Monster\n8)Samsung\n9)Xiaomi");
-            selectBrandNameSelection=in.nextInt();
-            if(selectBrandNameSelection<1 ||selectBrandNameSelection>9){
-                System.out.println("Yanlış bir sayı girdiniz lütfen tekrar deneyiniz!!");
-            }
-            switch (selectBrandNameSelection){
-                case 1:
-                    mpBrandName= BrandList.get(0).getName();
-                    break;
-                case 2:
-                    mpBrandName= BrandList.get(1).getName();
-                    break;
-                case 3:
-                    mpBrandName= BrandList.get(2).getName();
-                    break;
-                case 4:
-                    mpBrandName= BrandList.get(3).getName();
-                    break;
-                case 5:
-                    mpBrandName= BrandList.get(4).getName();
-                    break;
-                case 6:
-                    mpBrandName= BrandList.get(5).getName();
-                    break;
-                case 7:
-                    mpBrandName= BrandList.get(6).getName();
-                    break;
-                case 8:
-                    mpBrandName= BrandList.get(7).getName();
-                    break;
-                case 9:
-                    mpBrandName= BrandList.get(8).getName();
-                    break;
-            }
 
-        }while(selectBrandNameSelection<1 || selectBrandNameSelection>9);
+        String mpBrandName = null;
+        boolean found2 = false;
+        do{
+            System.out.println("Bir marka giriniz:");
+            mpBrandName=in.nextLine();
+            for(int i=0;i<BrandList.size();i++){
+                if(BrandList.get(i).getName().equals(mpBrandName)){
+                    System.out.println("işlem başarı ile gerçekleştirilmiştir");
+                    found2=true;
+                }
+            }
+            if(!found2){
+                System.out.println("Sistemde olmayan bir marka girdiniz !!");
+                System.out.println("Sistemdeki markalar aşşağıda ki gibidir!!");
+                for(Brands bl:BrandList){
+                    System.out.println("-"+bl.getName());
+                }
+            }
+        }while(!found2);
 
         int mpPrice;
         do{
@@ -158,7 +140,7 @@ public class FunctionalStore {
             }
         }while(selectMPStorage<1 || selectMPStorage>3);
 
-        System.out.println("Telefonun ekran büyüklüğünü giriniz:");
+        System.out.println("Telefonun ekran büyüklüğünü giriniz(Virgül kullanınız!!):");
         double mpSize=in.nextDouble();
         int selectMPRam;
         int mpRam=0;
@@ -241,6 +223,172 @@ public class FunctionalStore {
             Collections.sort(mpList);
         }
 
+    }
+
+
+
+
+    //NoteBook işlemleri-------------------------------------------------------------
+
+    static ArrayList<NoteBook> nbList;
+    static{
+        nbList=new ArrayList<>();
+        nbList.add(new NoteBook(1,4000,40,5000,"Matebook 14","Huawei",512,14.2,16));
+        nbList.add(new NoteBook(2,4500,30,4000,"V14 IGL","Lenovo",256,15.4,8));
+        nbList.add(new NoteBook(3,3500,25,4000,"Tuf Gaming","Asus",512,17.3,32));
+    }
+
+    public void printNoteBooks(){
+        System.out.println("-------------------------------------------------------------------------------------------");
+        System.out.println("| ID  |  Name\t\t\t\t|  Marka\t|  Fiyat \t  |  Depolama\t|  Ekran\t|  Ram\t  |");
+        System.out.println("|-----------------------------------------------------------------------------------------|");
+        for(NoteBook nb1: nbList){
+            System.out.printf("| %-4d|  %-19s|  %-9s|  %-11d|  %-11d|  %-9.1f|  %-7d|  \n",
+                    nb1.getProductID(), nb1.getProductName(),nb1.getBrandsName(), nb1.getProductPrice(), nb1.getProductStorage(), nb1.getProductSize()
+                    , nb1.getRam());
+
+        }
+        System.out.println("-------------------------------------------------------------------------------------------");
+
+    }
+
+    public void addNoteBook(){
+        Scanner in=new Scanner(System.in);
+        System.out.println("Notebookun ID sini giriniz");
+        int nbID=in.nextInt();
+        in.nextLine();
+        System.out.println("Notebookun adını giriniz");
+        String nbName=in.nextLine();
+
+        String nbBrandName = null;
+        boolean found2 = false;
+        do{
+            System.out.println("Bir marka giriniz:");
+            nbBrandName=in.nextLine();
+            System.out.println(nbBrandName);
+            for(int i=0;i<BrandList.size();i++){
+                if(BrandList.get(i).getName().equals(nbBrandName)){
+                    System.out.println("işlem başarı ile gerçekleştirilmiştir");
+                    found2=true;
+                }
+            }
+            if(!found2){
+                System.out.println("Sistemde olmayan bir marka girdiniz !!");
+                System.out.println("Sistemdeki markalar aşşağıda ki gibidir!!");
+                for(Brands bl:BrandList){
+                    System.out.println("-"+bl.getName());
+                }
+            }
+        }while(!found2);
+
+
+        int nbPrice=0;
+        do{
+            System.out.println("Notebookun fiyatını giriniz:");
+            nbPrice=in.nextInt();
+            if(nbPrice<0){
+                System.out.println("Fiyat sıfırın altında olamaz!!");
+            }
+        }while(nbPrice<0);
+
+        System.out.println("Notebookun depolama alanını giriniz:\n1)128\n2)256\n3)512\n4)Kendim Gireceğim(Sizden veri girişi beklenir)");
+        int selectnbStorage= in.nextInt();
+        int nbStorage=0;
+        switch (selectnbStorage){
+            case 1:
+                nbStorage=128;
+                break;
+            case 2:
+                nbStorage=256;
+                break;
+            case 3:
+                nbStorage=512;
+                break;
+            case 4:
+                do{
+                    System.out.println("Notebookun depolama alanını giriniz:");
+                    nbStorage=in.nextInt();
+                    if(nbStorage<0){
+                        System.out.println("Depolama alanı sıfırdan küçük bir değer alamaz!!");
+                    }
+
+                }while(nbStorage<0);
+                break;
+
+        }
+
+        System.out.println("Ekran boyutunu giriniz (Virgül kullanınız)");
+        double nbSize=in.nextDouble();
+        int nbRam=0;
+        int selectnbRam;
+        do{
+            System.out.println("Notebookun ramini seçiniz:\n1)8\n2)16\n3)32\n4)Kendim gireceğim(Sizden veri girişi istenir)");
+            selectnbRam=in.nextInt();
+            switch (selectnbRam){
+                case 1:
+                    nbRam=8;
+                    break;
+                case 2:
+                    nbRam=16;
+                    break;
+                case 3:
+                    nbRam=32;
+                    break;
+                case 4:
+                    do{
+                        System.out.println("Notebookun Ramini giriniz:");
+                        nbRam= in.nextInt();
+                        if(nbRam<0){
+                            System.out.println("Notebookun rami o dan küçük bir değer alamaz!!");
+                        }
+
+                    }while(nbRam<0);
+
+            }
+        }while(selectnbRam<1 || selectnbRam>4);
+
+        int nbDiscountRate;
+        do{
+            System.out.println("Notebookun indirim oranını seçiniz:");
+            nbDiscountRate=in.nextInt();
+            if(nbDiscountRate<0 || nbDiscountRate>100){
+                System.out.println("İndirim oranı 0 ila 100 arası bir değer almalıdır!!");
+            }
+        }while(nbDiscountRate<0 || nbDiscountRate>100);
+
+        int nbStock;
+        do {
+            System.out.println("Stok miktarını giriniz:");
+            nbStock=in.nextInt();
+            if(nbStock<0){
+                System.out.println("Stok miktarı sıfırdan küçük olamaz!!");
+            }
+
+        }while(nbStock<0);
+
+        nbList.add(new NoteBook(nbID,nbPrice,nbDiscountRate,nbStock,nbName,nbBrandName,nbStorage,nbSize,nbRam));
+    }
+
+
+    public void removeNotebook(){
+        Scanner in=new Scanner(System.in);
+        int nbremovedID=0;
+        boolean found=false;
+        do{
+            System.out.println("Silmek istediğiniz notebookun ID sini giriniz:");
+            nbremovedID=in.nextInt();
+            for (int i=0; i<nbList.size();i++){
+                if(nbList.get(i).getProductID()==nbremovedID){
+                    nbList.remove(i);
+                    System.out.println("İşlem başarı ile gerçekleştirilmiştir!!");
+                    found=true;
+                }
+            }
+            if(found !=true){
+                System.out.println("Girdiğiniz ID sistemde bulunmamaktadır!!");
+            }
+
+        }while(!found);
     }
 
 }
